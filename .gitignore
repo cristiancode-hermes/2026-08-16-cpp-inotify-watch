@@ -1,0 +1,5 @@
+inotify-watch
+compile.log
+build/
+*.o
+node_modules

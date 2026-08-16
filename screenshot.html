@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1e1e2e;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 40px;
+  }
+  .terminal {
+    background: #181825;
+    border-radius: 12px;
+    padding: 24px 28px;
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #cdd6f4;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    max-width: 1000px;
+    width: 100%;
+    border: 1px solid #313244;
+  }
+  .terminal .title-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding-bottom: 16px; border-bottom: 1px solid #313244;
+    margin-bottom: 16px;
+  }
+  .terminal .title-bar .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .terminal .title-bar .dot.r { background: #f38ba8; }
+  .terminal .title-bar .dot.y { background: #f9e2af; }
+  .terminal .title-bar .dot.g { background: #a6e3a1; }
+  .terminal .title-bar .title { margin-left: 12px; font-size: 13px; color: #6c7086; }
+  .terminal .line { white-space: pre; }
+  .terminal .green { color: #a6e3a1; }
+  .terminal .yellow { color: #f9e2af; }
+  .terminal .red { color: #f38ba8; }
+  .terminal .dim { color: #6c7086; }
+  .terminal .cyan { color: #89dceb; }
+  .terminal .magenta { color: #f5c2e7; }
+  .terminal .bold { color: #cdd6f4; }
+  .terminal .sep { color: #45475a; }
+  .terminal .prompt { color: #a6adc8; }
+  .terminal .header { color: #f5e0dc; }
+  .terminal .json { color: #a6e3a1; }
+</style>
+</head>
+<body>
+<div class="terminal">
+  <div class="title-bar">
+    <div class="dot r"></div>
+    <div class="dot y"></div>
+    <div class="dot g"></div>
+    <span class="title">inotify-watch — Linux Filesystem Event Monitor (C++23)</span>
+  </div>
+
+  <div class="line prompt">  $ ./inotify-watch -r src</div>
+  <div class="line dim">  •  watching src (recursive, 4 dirs)</div>
+  <div class="line bold">  INOTIFY WATCH — filesystem events (inotify(7))</div>
+  <div class="line dim">  mask: CREATE|MODIFY|DELETE|MOVE|ATTRIB · Ctrl+C para salir</div>
+  <div class="line"></div>
+  <div class="line"><span class="dim">[11:42:03]</span> <span class="green">CREATE    </span> <span class="bold">dir </span>src/components</div>
+  <div class="line"><span class="dim">[11:42:04]</span> <span class="green">CREATE    </span> file src/components/Button.tsx</div>
+  <div class="line"><span class="dim">[11:42:04]</span> <span class="yellow">MODIFY    </span> file src/components/Button.tsx</div>
+  <div class="line"><span class="dim">[11:42:05]</span> <span class="yellow">MODIFY    </span> file src/components/Button.tsx</div>
+  <div class="line"><span class="dim">[11:42:05]</span> <span class="magenta">ATTRIB    </span> file src/components/Button.tsx</div>
+  <div class="line"><span class="dim">[11:42:07]</span> <span class="cyan">RENAME    </span> file src/components/Button.tsx -&gt; src/components/Button.tsx.bak</div>
+  <div class="line"><span class="dim">[11:42:08]</span> <span class="green">CREATE    </span> file src/components/Button.tsx</div>
+  <div class="line"><span class="dim">[11:42:09]</span> <span class="yellow">MODIFY    </span> file src/components/Button.tsx</div>
+  <div class="line"><span class="dim">[11:42:10]</span> <span class="green">CREATE    </span> <span class="bold">dir </span>dist/assets</div>
+  <div class="line"><span class="dim">[11:42:11]</span> <span class="green">CREATE    </span> file dist/assets/app-1a2b3c.css</div>
+  <div class="line"><span class="dim">[11:42:11]</span> <span class="green">CREATE    </span> file dist/assets/app-4d5e6f.js</div>
+  <div class="line"><span class="dim">[11:42:12]</span> <span class="yellow">MODIFY    </span> file dist/index.html</div>
+  <div class="line"><span class="dim">[11:42:14]</span> <span class="red">DELETE    </span> file src/components/Button.tsx.bak</div>
+  <div class="line"><span class="dim">[11:42:15]</span> <span class="red">DELETE    </span> file tmp/cache-0.tmp</div>
+  <div class="line"><span class="dim">[11:42:16]</span> <span class="green">CREATE    </span> file dist/assets/app-7a8b9c.js</div>
+  <div class="line"><span class="dim">[11:42:17]</span> <span class="yellow">MODIFY    </span> file dist/assets/app-7a8b9c.js</div>
+  <div class="line sep">  ------------------------------------------------------------------------------</div>
+  <div class="line bold">  SUMMARY</div><div class="line">  watched 1 path(s) · 18 events in 15.3s · <span class="magenta">ATTRIB 1</span>  <span class="green">CREATE 7</span>  <span class="red">DELETE 2</span>  <span class="yellow">MODIFY 6</span>  <span class="cyan">RENAME 1</span></div>
+  <div class="line"></div>
+
+  <div class="line prompt">  $ ./inotify-watch --json -t 5 /var/log</div>
+  <div class="line json">  {"ts":1786849781,"type":"CREATE","path":"/var/log/nginx/access.log","dir":false,"cookie":0}</div>
+  <div class="line json">  {"ts":1786849782,"type":"MODIFY","path":"/var/log/nginx/access.log","dir":false,"cookie":0}</div>
+  <div class="line json">  {"ts":1786849783,"type":"RENAME","from":"/var/log/nginx/access.log","to":"/var/log/nginx/access.log.1","dir":false,"cookie":2559871}</div>
+  <div class="line dim">  SUMMARY  watched 1 path(s) · 3 events in 5.0s · MODIFY 1  CREATE 1  RENAME 1</div>
+  <div class="line"></div>
+
+  <div class="line prompt">  $ ./inotify-watch --selftest</div>
+  <div class="line"><span class="green">  PASS</span>  RAII: inotify_init1 sin excepción</div>
+  <div class="line"><span class="green">  PASS</span>  add_watch sobre directorio</div>
+  <div class="line"><span class="green">  PASS</span>  pairing por cookie: a.txt -&gt; b.txt</div>
+  <div class="line"><span class="green">  PASS</span>  resolución wd-&gt;path (a.txt)</div>
+  <div class="line"><span class="green">  PASS</span>  flag IN_ISDIR en creación de directorio</div>
+  <div class="line"><span class="green">  PASS</span>  filtro de máscara: solo CREATE, MODIFY excluido</div>
+  <div class="line"><span class="green">  PASS</span>  watch recursivo: evento en subdirectorio anidado</div>
+  <div class="line"><span class="green">  PASS</span>  JSON: claves con comillas (type)</div>
+  <div class="line"><span class="bold">  30 passed, 0 failed</span></div>
+  <div class="line dim">  ─────────────────────────────────────────────────────────────</div>
+  <div class="line dim">  inotify(7) · cookie pairing · -r recursivo · máscaras · JSONL · --demo · 30 selftests · C++23 stdlib-only</div>
+</div>
+</body>
+</html>
